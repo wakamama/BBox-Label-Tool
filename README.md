@@ -50,7 +50,9 @@ Usage
 For Video Sample to Image
 -------
 $ python sample_video.py   --outdir OUTPUT_DIR    --file INPUT_FILE	  (optional)--sam 5
+
 (example :python sample_video.py --outdir ./001 --file ./1.mp4 --sam 1)
+
 (example :python sample_video.py --outdir ./001 --file ./1.mp4        )
 
 Usage
