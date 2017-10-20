@@ -123,17 +123,16 @@ class LabelTool():
         if not dbg:
             s = self.entry.get()
             self.parent.focus()
-            self.category = int(s)
         else:
-            s = r'D:\workspace\python\labelGUI'
+            s = r'~/leowork/BBox-Label-Tool'
 ##        if not os.path.isdir(s):
 ##            tkMessageBox.showerror("Error!", message = "The specified dir doesn't exist!")
 ##            return
         # get image list
-        self.imageDir = os.path.join(r'./Images', '%03d' %(self.category))
-        self.imageList = glob.glob(os.path.join(self.imageDir, '*.JPEG'))
+        self.imageDir = s
+        self.imageList = glob.glob(os.path.join(self.imageDir, '*.jpg'))
         if len(self.imageList) == 0:
-            print 'No .JPEG images found in the specified dir!'
+            print 'No .JPEG images found in :'+s
             return
 
         # default to the 1st image in the collection
@@ -145,23 +144,23 @@ class LabelTool():
         if not os.path.exists(self.outDir):
             os.mkdir(self.outDir)
 
-        # load example bboxes
-        self.egDir = os.path.join(r'./Examples', '%03d' %(self.category))
-        if not os.path.exists(self.egDir):
-            return
-        filelist = glob.glob(os.path.join(self.egDir, '*.JPEG'))
-        self.tmp = []
-        self.egList = []
-        random.shuffle(filelist)
-        for (i, f) in enumerate(filelist):
-            if i == 3:
-                break
-            im = Image.open(f)
-            r = min(SIZE[0] / im.size[0], SIZE[1] / im.size[1])
-            new_size = int(r * im.size[0]), int(r * im.size[1])
-            self.tmp.append(im.resize(new_size, Image.ANTIALIAS))
-            self.egList.append(ImageTk.PhotoImage(self.tmp[-1]))
-            self.egLabels[i].config(image = self.egList[-1], width = SIZE[0], height = SIZE[1])
+#        # load example bboxes
+#        self.egDir = os.path.join(r'./Examples', '%03d' %(self.category))
+#        if not os.path.exists(self.egDir):
+#            return
+#        filelist = glob.glob(os.path.join(self.egDir, '*.JPG'))
+#        self.tmp = []
+#        self.egList = []
+#        random.shuffle(filelist)
+#        for (i, f) in enumerate(filelist):
+#            if i == 3:
+#                break
+#            im = Image.open(f)
+#            r = min(SIZE[0] / im.size[0], SIZE[1] / im.size[1])
+#            new_size = int(r * im.size[0]), int(r * im.size[1])
+#            self.tmp.append(im.resize(new_size, Image.ANTIALIAS))
+#            self.egList.append(ImageTk.PhotoImage(self.tmp[-1]))
+#            self.egLabels[i].config(image = self.egList[-1], width = SIZE[0], height = SIZE[1])
 
         self.loadImage()
         print '%d images loaded from %s' %(self.total, s)
