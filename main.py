@@ -122,18 +122,26 @@ class LabelTool():
     def loadDir(self, dbg = False):
         if not dbg:
             s = self.entry.get()
+            if not s.isdigit():
+                print 'Please enter the seq of the DIR in ./Images ex: 001 002 003'
+                return
+                
             self.parent.focus()
             self.category = int(s)
         else:
             s = r'~/leowork/BBox-Label-Tool'
-##        if not os.path.isdir(s):
-##            tkMessageBox.showerror("Error!", message = "The specified dir doesn't exist!")
-##            return
+            
         # get image list
         a = glob.glob(os.path.join(r'./Images', '%03d' %(self.category),'*.jpg'))
+        # sorted with file name (001.jpg 002.jpg ...)
         self.imageList = sorted(  a , key= lambda fileseq : int (fileseq.split('/')[-1][: fileseq.split('/')[-1].find('.')]))
+        
         if len(self.imageList) == 0:
             print 'No .jpg images found in : ./Images/'+s
+            print 'The images should be placed like : '
+            print './Images/001/1.jpg'
+            print './Images/001/2.jpg'
+            print './Images/001/3.jpg...'
             return
 
         # default to the 1st image in the collection

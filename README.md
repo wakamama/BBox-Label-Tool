@@ -15,7 +15,12 @@ LabelTool
 |  
 |--main.py   *# source code for the tool*  
 |  
-|--Images/   *# direcotry containing the images to be labeled*  
+|--Images/   *# direcotry containing the images to be labeled*
+	     *# The images recommanded to be placed like : 
+		./Images/001/1.jpg
+		./Images/001/2.jpg
+		./Images/001/3.jpg...
+  
 |  
 |--Labels/   *# direcotry for the labeling results*  
 |  
@@ -40,3 +45,18 @@ Usage
   - To delete all existing bounding boxes in the image, simply click `ClearAll`.
 3. After finishing one image, click `Next` to advance. Likewise, click `Prev` to reverse. Or, input an image id and click `Go` to navigate to the speficied image.
   - Be sure to click `Next` after finishing a image, or the result won't be saved. 
+
+
+For Video Sample to Image
+-------
+$ python sample_video.py --outdir OUTPUT_DIR --file INPUT_FILE	(optional)--sam 5
+(example :python sample_video.py --outdir ./001 --file ./1.mp4 --sam 1)
+
+Usage
+-----
+Sample the video to images with sample rate --sam
+The default sample rate is 1 frame per second
+
+
+
+

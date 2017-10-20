@@ -5,7 +5,6 @@ import argparse
 
 #Example :python sample_video.py --outdir ./002 --file ./3186.mp4
 
-
 parser = argparse.ArgumentParser(description='Process some integers.')
 # enter the output dir path
 parser.add_argument('--outdir', type=str, required = True, help='enter the output dir path')
