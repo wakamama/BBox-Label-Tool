@@ -123,16 +123,17 @@ class LabelTool():
         if not dbg:
             s = self.entry.get()
             self.parent.focus()
+            self.category = int(s)
         else:
             s = r'~/leowork/BBox-Label-Tool'
 ##        if not os.path.isdir(s):
 ##            tkMessageBox.showerror("Error!", message = "The specified dir doesn't exist!")
 ##            return
         # get image list
-        self.imageDir = s
-        self.imageList = glob.glob(os.path.join(self.imageDir, '*.jpg'))
+        a = glob.glob(os.path.join(r'./Images', '%03d' %(self.category),'*.jpg'))
+        self.imageList = sorted(  a , key= lambda fileseq : int (fileseq.split('/')[-1][: fileseq.split('/')[-1].find('.')]))
         if len(self.imageList) == 0:
-            print 'No .JPEG images found in :'+s
+            print 'No .jpg images found in : ./Images/'+s
             return
 
         # default to the 1st image in the collection
@@ -202,7 +203,7 @@ class LabelTool():
             f.write('%d\n' %len(self.bboxList))
             for bbox in self.bboxList:
                 f.write(' '.join(map(str, bbox)) + '\n')
-        print 'Image No. %d saved' %(self.cur)
+        print 'Image No. %d saved as %s' %(self.cur,self.labelfilename)
 
 
     def mouseClick(self, event):

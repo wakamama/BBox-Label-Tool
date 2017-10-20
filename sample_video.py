@@ -36,7 +36,7 @@ def main():
         return
         
     count = 0
-    id_ct = 0
+    id_ct = 1
     
     while(True):    
         ret, img = cap.read()    
