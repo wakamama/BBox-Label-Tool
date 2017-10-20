@@ -16,9 +16,13 @@ LabelTool
 |--main.py   *# source code for the tool*  
 |  
 |--Images/   *# direcotry containing the images to be labeled*
+
 	     *# The images recommanded to be placed like : 
+	     
 		./Images/001/1.jpg
+		
 		./Images/001/2.jpg
+		
 		./Images/001/3.jpg...
   
 |  
